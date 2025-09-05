@@ -162,8 +162,8 @@ st.write(["Wähle deinen Namen und eine Aktivität aus:", "Choose your name and 
 
 
 # 📊 Auswahl der Eingaben
-name = st.selectbox("Wähle deinen Namen", users)
-kategorie = st.selectbox(["Wähle eine Aktivität", "Choose an activity"][lng], list(CATEGORIES.keys()))
+name = st.selectbox(["Wähle deinen Namen", "Choose your name"][lng], users)
+kategorie = st.selectbox(["Wähle eine Aktivität", "Choose an activity"][lng], list(CATEGORIES.keys())[4*lng:4+4*lng])
 
 # Daten aus GitHub laden
 df, sha = load_data(CATEGORIES[kategorie])
@@ -249,7 +249,7 @@ bars = alt.Chart(df).mark_bar(
     cornerRadiusTopRight=20
 ).encode(
     x=alt.X('Personen:N', title=None, axis=alt.Axis(labelAngle=0, labelFontSize=13)),
-    y=alt.Y('Werte:Q', title="Anzahl", axis=alt.Axis(labelFontSize=13)),
+    y=alt.Y('Werte:Q', title=["Anzahl", "Count"][lng], axis=alt.Axis(labelFontSize=13)),
     color=alt.Color('Personen:N', legend=None, scale=alt.Scale(scheme='category10')),
     tooltip=[
         alt.Tooltip('Personen:N', title="Person"),
@@ -282,7 +282,20 @@ st.altair_chart(chart, use_container_width=True)
 
 
 
+
+
+
+
+
 st.stop()
+
+
+
+
+
+
+
+
 
 
 # Weitere Interaktionen, je nach Auswahl
@@ -368,7 +381,7 @@ for bar in bars:
     bar.set_capstyle("round")  # Macht die Kanten weicher
 
 ax.set_title("💡 Aktionen im Überblick")
-ax.set_ylabel("Anzahl")
+ax.set_ylabel(["Anzahl", "Count"][lng])
 ax.set_ylim(0, max(werte) + 5)
 
 st.pyplot(fig)
