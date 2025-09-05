@@ -51,6 +51,11 @@ if "auto_login_attempted" not in st.session_state:
     st.session_state["auto_login_attempted"] = False
 
 
+if st.button(["Change language 🇬🇧", "Sprache wechseln 🇩🇪"][lng]):
+    lng = 1 - lng
+    st.rerun()
+    
+
 def check_login():
     username = st.session_state["username"]
     password = st.session_state["password"]
@@ -104,9 +109,6 @@ users = [user] + [person for person in ["Pius", "Johannes", ["Heinzelmännchen",
 
 if st.button(["Abmelden", "Log out"][lng]):
     st.session_state["user"] = None
-    st.rerun()
-if st.button(["Change language 🇬🇧", "Sprache wechseln 🇩🇪"][lng]):
-    lng = 1 - lng
     st.rerun()
 
 
