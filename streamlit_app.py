@@ -64,6 +64,11 @@ def check_login():
     password = st.session_state["password"]
     if USERS.get(username) == password:
         st.session_state["user"] = username
+        if username == "Pius":
+            st.session_state["language"] = 1
+        elif username == "Johannes":
+            st.session_state["language"] = 0
+        lng = st.session_state["language"]
         st.success([f"✅ Eingeloggt als {username}", f"✅ Logged in as {username}"][lng])
         st.rerun()
     else:
