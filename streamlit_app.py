@@ -107,6 +107,7 @@ if st.button(["Abmelden", "Log out"][lng]):
     st.rerun()
 if st.button(["Change language 🇬🇧", "Sprache wechseln 🇩🇪"][lng]):
     lng = 1 - lng
+    st.rerun()
 
 
 # 📅 Funktion: CSV aus GitHub laden
