@@ -13,7 +13,9 @@ import altair as alt
 
 
 # 🛠 GITHUB EINSTELLUNGEN (ANPASSEN)
-lng = 0 # Language
+if "language" not in st.session_state:
+    st.session_state["language"] = 0
+lng = st.session_state["language"] # Language
 
 GITHUB_USER = "JohannesProgrammes"
 REPO_NAME = "pijowg"
@@ -52,9 +54,10 @@ if "auto_login_attempted" not in st.session_state:
 
 
 if st.button(["Change language 🇬🇧", "Sprache wechseln 🇩🇪"][lng]):
-    lng = 1 - lng
+    st.session_state["language"] = 1 - lng
+    lng = st.session_state["language"]
     st.rerun()
-    
+
 
 def check_login():
     username = st.session_state["username"]
