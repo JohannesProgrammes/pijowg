@@ -100,11 +100,13 @@ if not st.session_state["user"]:
 
 # Eingeloggten Benutzer abrufen
 user = st.session_state["user"]
-users = [user] + [person for person in ["Pius", "Johannes", "Heinzelmännchen"] if not person == user]
+users = [user] + [person for person in ["Pius", "Johannes", ["Heinzelmännchen", "little household helper"][lng]] if not person == user]
 
 if st.button(["Abmelden", "Log out"][lng]):
     st.session_state["user"] = None
     st.rerun()
+if st.button(["Change language 🇬🇧", "Sprache wechseln 🇩🇪"][lng]):
+    lng = 1 - lng
 
 
 # 📅 Funktion: CSV aus GitHub laden
